@@ -14,6 +14,7 @@ export interface DigitalProduct {
   description: string;
   price: number;
   image: string;
+  demoLink: string;
 }
 
 export interface Skill {

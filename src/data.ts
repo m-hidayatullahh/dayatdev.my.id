@@ -117,17 +117,23 @@ export const projects: Project[] = [
 export const digitalProducts: DigitalProduct[] = [
   {
     id: 1,
-    name: "UI Design Course",
-    description: "Complete UI/UX design course with practical projects",
-    price: 150000,
-    image: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=800&auto=format&fit=crop&q=60"
+    name: "Sistem Pendukung Keputusan (SPK) Kombinasi Metode AHP & SMART dengan Laravel",
+    description: `🚀 Tingkatkan Keputusan Bisnis Anda dengan Sistem Cerdas Berbasis Laravel!
+Apakah Anda sering mengalami kesulitan dalam mengambil keputusan yang tepat? Sistem Pendukung Keputusan (SPK) ini hadir untuk membantu Anda! 
+Dengan menggabungkan metode AHP (Analytical Hierarchy Process) dan SMART (Simple Multi-Attribute Rating Technique), sistem ini memberikan analisis yang akurat dan objektif dalam menentukan keputusan terbaik berdasarkan berbagai kriteria.`,
+    price: 500000,
+    image: "https://imagedelivery.net/BEpZD4STClc2m5vi5P48kw/9530d63f-f335-41ff-31db-ecbb1c938e00/cover",
+    demoLink: "https://youtu.be/3KZSeJWR2fA?si=TjkPEC5MnKz4Zi2C"
   },
   {
     id: 2,
-    name: "React Development Guide",
-    description: "Comprehensive guide to modern React development",
-    price: 100000,
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=60"
+    name: "Sistem Pendukung Keputusan (SPK) Metode SAW dengan Laravel",
+    description: `🚀 Ambil Keputusan Terbaik dengan Sistem Cerdas Berbasis Laravel!
+
+Apakah Anda ingin membuat keputusan yang lebih cepat, akurat, dan objektif? Sistem Pendukung Keputusan (SPK) Metode SAW (Simple Additive Weighting) ini adalah solusi terbaik untuk membantu Anda memilih alternatif terbaik berdasarkan berbagai kriteria yang telah ditentukan!`,
+    price: 500000,
+    image: "https://imagedelivery.net/BEpZD4STClc2m5vi5P48kw/9530d63f-f335-41ff-31db-ecbb1c938e00/cover",
+    demoLink: "https://youtu.be/KqU0PNNzgjU?si=15KQsq3xaO1sKfUg"
   }
 ];
 
