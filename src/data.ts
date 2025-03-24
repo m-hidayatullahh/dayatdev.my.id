@@ -122,7 +122,7 @@ export const digitalProducts: DigitalProduct[] = [
 Apakah Anda sering mengalami kesulitan dalam mengambil keputusan yang tepat? Sistem Pendukung Keputusan (SPK) ini hadir untuk membantu Anda! 
 Dengan menggabungkan metode AHP (Analytical Hierarchy Process) dan SMART (Simple Multi-Attribute Rating Technique), sistem ini memberikan analisis yang akurat dan objektif dalam menentukan keputusan terbaik berdasarkan berbagai kriteria.`,
     price: 500000,
-    image: "https://imagedelivery.net/BEpZD4STClc2m5vi5P48kw/9530d63f-f335-41ff-31db-ecbb1c938e00/cover",
+    image: "https://gcdnb.pbrd.co/images/aZIi1kMhbhSk.png?o=1",
     demoLink: "https://youtu.be/3KZSeJWR2fA?si=TjkPEC5MnKz4Zi2C"
   },
   {
