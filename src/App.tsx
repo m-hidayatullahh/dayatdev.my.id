@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -8,37 +8,24 @@ import { Skills } from './pages/Skills';
 import { Projects } from './pages/Projects';
 import { Products } from './pages/Products';
 import { Contact } from './pages/Contact';
-import Assistant from './components/Assistant'; // Import Assistant component
-import { Bot } from 'lucide-react'; // Import AI Bot icon from lucide-react
-import Docs  from './pages/Docs'; // Import Docs component
+import Assistant from './components/Assistant';
+import { Bot, X, MessageCircle } from 'lucide-react';
+import Docs from './pages/Docs';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('darkMode') === 'true';
-    }
-    return false;
-  });
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
+  const [isAssistantOpen, setIsAssistantOpen] = useState(false);
+  const [isFloatingVisible, setIsFloatingVisible] = useState(true);
 
-  const [isAssistantOpen, setIsAssistantOpen] = useState(false); // State to toggle Assistant
-
-  React.useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
     localStorage.setItem('darkMode', darkMode.toString());
   }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200 flex flex-col">
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} />
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -47,29 +34,51 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/products" element={<Products />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/docs" element={<Docs />} /> {/* Add Docs route */}
+            <Route path="/docs" element={<Docs />} />
           </Routes>
         </div>
         <Footer />
 
-        {/* Floating Assistant Button */}
-        <button
-          onClick={() => setIsAssistantOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none flex items-center space-x-2"
-        >
-          <Bot className="h-6 w-6" /> {/* AI Bot Icon */}
-          <span className="font-small">Tanya AI Dayat</span>
-        </button>
+        {/* Floating Button AI & Hide Button */}
+        <div className="fixed bottom-6 right-6 flex flex-col items-end space-y-2">
+          {/* Tombol Show (💬) ketika Floating AI disembunyikan */}
+          {!isFloatingVisible && (
+            <button
+              onClick={() => setIsFloatingVisible(true)}
+              className="bg-gray-700 text-white p-3 rounded-md shadow-md hover:bg-gray-800 transition"
+            >
+              <MessageCircle className="h-6 w-6" />
+            </button>
+          )}
+
+          {/* Floating AI Button + Hide Button */}
+          {isFloatingVisible && (
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setIsFloatingVisible(false)}
+                className="bg-red-600 text-white p-2 rounded-md shadow-md hover:bg-red-700 transition"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => setIsAssistantOpen(true)}
+                className="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-110 flex items-center space-x-2"
+              >
+                <Bot className="h-6 w-6" />
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Assistant Modal */}
         {isAssistantOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-lg w-full p-6 relative animate-fadeIn">
               <button
                 onClick={() => setIsAssistantOpen(false)}
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100"
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
               >
-                ✖
+                <X className="h-6 w-6" />
               </button>
               <Assistant />
             </div>
