@@ -55,10 +55,10 @@ function App() {
         {/* Floating Assistant Button */}
         <button
           onClick={() => setIsAssistantOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none flex items-center space-x-2"
+          className="fixed bottom-4 right-4 bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none flex items-center space-x-1 text-sm"
         >
           <Bot className="h-6 w-6" /> {/* AI Bot Icon */}
-          <span className="font-small">Tanya AI Dayat</span>
+          {/* <span className="text-xs"></span> */}
         </button>
 
         {/* Assistant Modal */}
