@@ -13,6 +13,7 @@ export interface DigitalProduct {
   name: string;
   description: string;
   price: number;
+  originalPrice: number;
   image: string;
   demoLink: string;
 }

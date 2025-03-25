@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
             transition={{ duration: 1 }}
           >
             <span className="block">Hi, I'm M.Hidayatullah</span>
-            <span className="block text-blue-600">Web Developer</span>
+            <span className="block text-blue-600">Software Engineer</span>
           </motion.h1>
           <motion.p
             className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
@@ -270,16 +270,28 @@ export const Home: React.FC = () => {
                       : product.description}
                   </p>
                   <div className="mt-4 flex items-center justify-between">
+                  <div>
+                    {/* Harga Asli dengan Garis Tengah (jika ada diskon) */}
+                    {product.originalPrice && product.originalPrice > product.price && (
+                      <del className="text-red-500 text-lg">
+                        {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(product.originalPrice)}`}
+                      </del>
+                    )}
+
+                    {/* Harga Diskon */}
                     <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(product.price)}`}
                     </p>
-                    <Link
-                      to="/products"
-                      className="text-blue-600 hover:underline cursor-pointer"
-                    >
-                      View Details
-                    </Link>
                   </div>
+
+                  {/* Link ke halaman produk */}
+                  <Link
+                    to="/products"
+                    className="text-blue-600 hover:underline cursor-pointer"
+                  >
+                    View Details
+                  </Link>
+                </div>
                   <button
                     onClick={() => handleWhatsAppCheckout(product)}
                     className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"

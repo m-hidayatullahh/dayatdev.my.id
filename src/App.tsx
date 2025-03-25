@@ -58,7 +58,7 @@ function App() {
           className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none flex items-center space-x-2"
         >
           <Bot className="h-6 w-6" /> {/* AI Bot Icon */}
-          <span className="font-medium">Tanya AI Dayat</span>
+          <span className="font-small">Tanya AI Dayat</span>
         </button>
 
         {/* Assistant Modal */}

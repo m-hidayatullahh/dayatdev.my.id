@@ -93,16 +93,28 @@ export const Products: React.FC = () => {
                 </p>
                 {/* Price and View Details Link */}
                 <div className="mt-4 flex items-center justify-between">
+                <div>
+                  {/* Harga Asli dengan Garis Tengah (jika ada diskon) */}
+                  {product.originalPrice && product.originalPrice > product.price && (
+                    <del className="text-red-500 text-lg">
+                      {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(product.originalPrice)}`}
+                    </del>
+                  )}
+                  {/* Harga Diskon */}
                   <p className="text-2xl font-bold text-gray-900 dark:text-white">
                     {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(product.price)}`}
                   </p>
-                  <span
-                    onClick={() => setSelectedProduct(product)}
-                    className="text-blue-600 hover:underline cursor-pointer"
-                  >
-                    View Details
-                  </span>
                 </div>
+
+                {/* Tombol View Details */}
+                <span
+                  onClick={() => setSelectedProduct(product)}
+                  className="text-blue-600 hover:underline cursor-pointer"
+                >
+                  View Details
+                </span>
+              </div>
+
                 <button
                   onClick={() => handleWhatsAppCheckout(product)}
                   className="mt-4 w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
@@ -147,7 +159,12 @@ export const Products: React.FC = () => {
               </div>
               {/* Product Price */}
               <p className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
-                {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(selectedProduct.price ?? 0)}`}
+                <del className="text-red-500 text-xl">
+                  {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(selectedProduct.originalPrice ?? 0)}`}
+                </del>
+                <span className="ml-2 text-white-600">
+                  {`Rp.${new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(selectedProduct.price ?? 0)}`}
+                </span>
               </p>
               {/* Demo Link */}
               {selectedProduct.demoLink && isValidUrl(selectedProduct.demoLink) && (

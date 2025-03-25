@@ -121,7 +121,8 @@ export const digitalProducts: DigitalProduct[] = [
     description: `🚀 Tingkatkan Keputusan Bisnis Anda dengan Sistem Cerdas Berbasis Laravel!
 Apakah Anda sering mengalami kesulitan dalam mengambil keputusan yang tepat? Sistem Pendukung Keputusan (SPK) ini hadir untuk membantu Anda! 
 Dengan menggabungkan metode AHP (Analytical Hierarchy Process) dan SMART (Simple Multi-Attribute Rating Technique), sistem ini memberikan analisis yang akurat dan objektif dalam menentukan keputusan terbaik berdasarkan berbagai kriteria.`,
-    price: 500000,
+    price: 150000,
+    originalPrice: 500000,
     image: "https://gcdnb.pbrd.co/images/aZIi1kMhbhSk.png?o=1",
     demoLink: "https://youtu.be/3KZSeJWR2fA?si=TjkPEC5MnKz4Zi2C"
   },
@@ -131,7 +132,8 @@ Dengan menggabungkan metode AHP (Analytical Hierarchy Process) dan SMART (Simple
     description: `🚀 Ambil Keputusan Terbaik dengan Sistem Cerdas Berbasis Laravel!
 
 Apakah Anda ingin membuat keputusan yang lebih cepat, akurat, dan objektif? Sistem Pendukung Keputusan (SPK) Metode SAW (Simple Additive Weighting) ini adalah solusi terbaik untuk membantu Anda memilih alternatif terbaik berdasarkan berbagai kriteria yang telah ditentukan!`,
-    price: 500000,
+    price: 150000,
+    originalPrice: 500000,
     image: "https://imagedelivery.net/BEpZD4STClc2m5vi5P48kw/9530d63f-f335-41ff-31db-ecbb1c938e00/cover",
     demoLink: "https://youtu.be/KqU0PNNzgjU?si=15KQsq3xaO1sKfUg"
   }
@@ -141,14 +143,17 @@ export const skills: Skill[] = [
   { name: "React", level: 40, icon: "react" },
   { name: "TypeScript", level: 45, icon: "code" },
   { name: "Node.js", level: 80, icon: "server" },
-  { name: "Tailwind CSS", level: 60, icon: "code" },
+  { name: "Tailwind CSS", level: 80, icon: "code" },
   { name: "Express", level: 80, icon: "server" },
-  { name: "JavaScript", level: 70, icon: "code" },
+  { name: "JavaScript", level: 90, icon: "code" },
   { name: "Laravel", level: 90, icon: "code" },
-  { name: "PostgreSQL", level: 70, icon: "server" },
-  { name: "Git", level: 80, icon: "code" },
+  { name: "PostgreSQL", level: 80, icon: "server" },
+  { name: "Aws", level: 60, icon: "code" },
   { name: "HTML & CSS", level: 90, icon: "code" } ,
-  { name: "Bootstrap", level: 70, icon: "code" },
-  { name: "MySQL", level: 80, icon: "server" }
+  { name: "Bootstrap", level: 90, icon: "code" },
+  { name: "MySQL", level: 80, icon: "server" },
+  { name: "Git", level: 90, icon: "code" },
+  { name: "Redis", level: 90, icon: "code" }
+
 
 ];
