@@ -69,6 +69,8 @@ export const About: React.FC = () => {
               className="rounded-lg shadow-xl"
               src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=800&auto=format&fit=crop&q=60"
               alt="Profile"
+              width={800}
+              height={600}
             />
           </motion.div>
         </div>
