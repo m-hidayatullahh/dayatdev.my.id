@@ -13,13 +13,16 @@ const generateSlug = (text: string) => {
     .replace(/-+/g, '-');
 };
 
+
+const siteUrl = import.meta.env.VITE_APP_SITE_URL || 'https://dayatdev.my.id';
+
 export const Home: React.FC = () => {
   const handleWhatsAppCheckout = (product: typeof digitalProducts[0]) => {
     const formatRupiah = (value: number) =>
       new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(value);
 
     const message = encodeURIComponent(
-      `Hi Dayat, Saya Mau Membeli Produk Berikut ${product.name} Total Harga ${formatRupiah(product.price)}`
+      `Hi Dayat, Saya Mau Membeli Produk Berikut ${product.name} Total Harga ${formatRupiah(product.price)}\n Link Produk Berikut: ${siteUrl}/products/${generateSlug(product.name)}`
     );
     window.open(`https://wa.me/6287715882995?text=${message}`, '_blank');
   };
