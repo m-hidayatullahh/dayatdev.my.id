@@ -143,11 +143,13 @@ export const Home: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <img
-                className="rounded-lg shadow-xl"
-                src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=800&auto=format&fit=crop&q=60"
-                alt="M.Hidayatullah Profile"
-              />
+            <img 
+                className="rounded-lg shadow-xl" 
+                src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=800&auto=fo" 
+                alt="M.Hidayatullah Profile" 
+                width="800" 
+                height="533" 
+                />
             </motion.div>
           </div>
         </div>
