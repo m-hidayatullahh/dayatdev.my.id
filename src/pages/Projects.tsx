@@ -90,7 +90,7 @@ export const Projects: React.FC = () => {
                 "@type": "Person",
                 "name": "M.Hidayatullah"
               },
-              "datePublished": "2023-01-01", // Ganti dengan tanggal publish sebenarnya
+              "datePublished": "2025-03-26", // Ganti dengan tanggal publish sebenarnya
               "keywords": selectedProject.tags.join(', ')
             })}
           </script>
