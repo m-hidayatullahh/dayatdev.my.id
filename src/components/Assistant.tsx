@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Docs from '../pages/Docs'; // Import Docs component
+import { Download } from 'lucide-react';
 
 const Assistant: React.FC = () => {
   const [question, setQuestion] = useState('');
@@ -194,15 +195,35 @@ const Assistant: React.FC = () => {
             {loading ? 'Loading...' : 'Tanya'}
           </button>
           {answer && (
-            <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-md">
-              <p className="text-gray-900 dark:text-white">{answer}</p>
+            <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-md space-y-4">
+            <p className="text-gray-900 dark:text-gray-300 text-center">
+              {answer}
+            </p>
+            
+            <div className="flex flex-col items-center space-y-3">
               <button
                 onClick={() => setShowDocs(true)}
-                className="mt-2 text-blue-600 hover:underline"
+                className="text-blue-600 dark:text-blue-400 hover:underline text-sm transition-colors"
               >
                 Lihat Panduan Bertanya
               </button>
+              
+              <div className="text-center">
+                <a
+                  href="https://docs.google.com/document/d/1pL_IocL7LzVWW4cTwERJNAksNkO0SqbbdM5k-Ff8n5M/edit?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-md text-sm shadow-sm hover:shadow-md transition-all"
+                >
+                  <Download className="h-3.5 w-3.5 mr-1.5" />
+                  Download Resume
+                </a>
+                <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-300">
+                  Klik untuk mengunduh CV lengkap
+                </p>
+              </div>
             </div>
+          </div>
           )}
         </div>
       )}

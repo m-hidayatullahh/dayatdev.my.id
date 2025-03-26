@@ -139,21 +139,81 @@ Apakah Anda ingin membuat keputusan yang lebih cepat, akurat, dan objektif? Sist
   }
 ];
 
-export const skills: Skill[] = [
-  { name: "React", level: 40, icon: "react" },
-  { name: "TypeScript", level: 45, icon: "code" },
-  { name: "Node.js", level: 80, icon: "server" },
-  { name: "Tailwind CSS", level: 80, icon: "code" },
-  { name: "Express", level: 80, icon: "server" },
-  { name: "JavaScript", level: 90, icon: "code" },
-  { name: "Laravel", level: 90, icon: "code" },
-  { name: "PostgreSQL", level: 80, icon: "server" },
-  { name: "Aws", level: 60, icon: "code" },
-  { name: "HTML & CSS", level: 90, icon: "code" } ,
-  { name: "Bootstrap", level: 90, icon: "code" },
-  { name: "MySQL", level: 80, icon: "server" },
-  { name: "Git", level: 90, icon: "code" },
-  { name: "Redis", level: 90, icon: "code" }
-
-
+export const skills = [
+  {
+    name: "Laravel",
+    icon: "backend",
+    category: "Backend Development",
+    level: 80,
+    technologies: ["PHP", "MySQL", "Eloquent", "Blade", "Artisan", "Rest API", "Middleware", "Service Repository Pattern", "Queue", "Event", "Notification"] // Tambahkan ini
+  },
+  {
+    name: "Tailwind CSS",
+    icon: "frontend",
+    category: "Frontend Development", 
+    level: 80,
+    technologies: ["Utility-First", "Responsive Design", "Customization"] // Tambahkan ini
+  },
+  {
+    name: "PostgreSQL",
+    icon: "backend",
+    category: "Database Management",
+    level: 80,
+    technologies: ["SQL", "ORM", "Migrations", "Seeding"] // Tambahkan ini
+  },
+  {
+    name: "AWS",
+    icon: "cloud",
+    category: "Cloud Services",
+    level: 60,
+    technologies: ["EC2", "S3", "RDS", "Lambda", "IAM"] // Tambahkan ini
+  },
+  {
+    name: "React",
+    icon: "frontend",
+    category: "Frontend Development",
+    level: 40,
+    technologies: ["Javascript", "JSX", "Hooks", "Context API", "Redux"] // Tambahkan ini
+  },
+  {
+    name: "TypeScript",
+    icon: "frontend",
+    category: "Frontend Development",
+    level: 45,
+    technologies: ["Static Typing", "Interfaces", "Generics", "Modules"] // Tambahkan ini
+  },
+  {
+    name: "Node.js",
+    icon: "backend",
+    category: "Backend Development",
+    level: 80,
+    technologies: ["Express", "NPM", "REST API", "Middleware", "JWT", "Mongoose"] // Tambahkan ini
+  },
+  {
+    name: "Express",
+    icon: "backend",
+    category: "Backend Development",
+    level: 80,
+    technologies: ["Routing", "Middleware", "Controllers", "Models", "JWT", "Mongoose"] // Tambahkan ini
+  },
+  // ... entri lainnya
 ];
+
+// export const skills: Skill[] = [
+//   { name: "React", level: 40, icon: "react" },
+//   { name: "TypeScript", level: 45, icon: "code" },
+//   { name: "Node.js", level: 80, icon: "server" },
+//   { name: "Tailwind CSS", level: 80, icon: "code" },
+//   { name: "Express", level: 80, icon: "server" },
+//   { name: "JavaScript", level: 90, icon: "code" },
+//   { name: "Laravel", level: 90, icon: "code" },
+//   { name: "PostgreSQL", level: 80, icon: "server" },
+//   { name: "Aws", level: 60, icon: "code" },
+//   { name: "HTML & CSS", level: 90, icon: "code" } ,
+//   { name: "Bootstrap", level: 90, icon: "code" },
+//   { name: "MySQL", level: 80, icon: "server" },
+//   { name: "Git", level: 90, icon: "code" },
+//   { name: "Redis", level: 90, icon: "code" }
+
+
+// ];

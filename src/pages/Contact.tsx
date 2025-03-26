@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion'; // Import Framer Motion
+import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,21 +21,22 @@ export const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation logic
+    // Validasi form
     if (!formData.nama.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.pesan.trim()) {
-      setModalMessage('All fields are required!');
+      setModalMessage('Semua field harus diisi!');
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setModalMessage('Please enter a valid email address!');
+      setModalMessage('Format email tidak valid!');
       return;
     }
 
+    // Proses pengiriman form
     const form = document.querySelector<HTMLFormElement>('form[name="submit-to-google-sheet"]');
     if (!form) {
-      setModalMessage('Form not found!');
+      setModalMessage('Form tidak ditemukan!');
       return;
     }
 
@@ -44,23 +46,18 @@ export const Contact: React.FC = () => {
       body: formDataToSend,
       headers: { Accept: 'application/json' },
     })
-      .then((response) => {
-        if (response.ok) {
-          setModalMessage('Pesan Anda Berhasil Saya Terima, Saya Akan Menghubungi Anda Kembali!');
-          setFormData({
-            nama: '',
-            email: '',
-            subject: '',
-            pesan: '',
-          });
-        } else {
-          setModalMessage('An error occurred while sending the message!');
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        setModalMessage('An error occurred while sending the message!');
-      });
+    .then((response) => {
+      if (response.ok) {
+        setModalMessage('Pesan berhasil dikirim! Saya akan segera menghubungi Anda.');
+        setFormData({ nama: '', email: '', subject: '', pesan: '' });
+      } else {
+        setModalMessage('Terjadi kesalahan saat mengirim pesan.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      setModalMessage('Terjadi kesalahan pada jaringan.');
+    });
   };
 
   const closeModal = () => {
@@ -69,156 +66,192 @@ export const Contact: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900">
-      {/* Modal Animation */}
+      {/* SEO Metadata */}
+      <Helmet>
+        <title>Contact - M.Hidayatullah | Software Engineer</title>
+        <meta 
+          name="description" 
+          content="Hubungi M.Hidayatullah untuk kolaborasi proyek, pertanyaan, atau kesempatan kerja sama dalam pengembangan web profesional." 
+        />
+        <meta property="og:title" content="Contact - M.Hidayatullah | Software Engineer" />
+        <meta 
+          property="og:description" 
+          content="Form kontak profesional untuk menghubungi M.Hidayatullah terkait pengembangan web dan kolaborasi proyek" 
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dayatdev.my.id/contact" />
+      </Helmet>
+
+      {/* Modal Notification */}
       {modalMessage && (
         <motion.div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <motion.div
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-sm w-full mx-4"
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.2 }}
           >
-            <p className="text-gray-900 dark:text-white">{modalMessage}</p>
+            <p className="text-gray-900 dark:text-white mb-4">{modalMessage}</p>
             <button
               onClick={closeModal}
-              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
             >
-              Close
+              Tutup
             </button>
           </motion.div>
         </motion.div>
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Animated Heading */}
+        {/* Header Section */}
         <motion.div
-          className="text-center"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-            Get in Touch
-          </h2>
+          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+            Hubungi Saya
+          </h1>
           <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
-            Have a question or want to work together?
+            Mari berdiskusi tentang proyek atau kolaborasi Anda
           </p>
         </motion.div>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
-          {/* Animated Contact Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
           <motion.div
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+            className="space-y-8"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="px-6 py-8">
-              <div className="grid grid-cols-1 gap-6">
-                <div className="flex items-center">
-                  <Mail className="h-6 w-6 text-blue-500" />
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">Email</p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">dayattdev@gmail.com</p>
-                  </div>
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                  <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 </div>
-                <div className="flex items-center">
-                  <Phone className="h-6 w-6 text-blue-500" />
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">Phone</p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">+62 877 1588 2995</p>
-                  </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">dayattdev@gmail.com</p>
+                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Respon waktu kerja: 24 jam</p>
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="h-6 w-6 text-blue-500" />
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">Location</p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Lombok West Nusa Tenggara</p>
-                  </div>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                  <Phone className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Telepon/WhatsApp</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">+62 877 1588 2995</p>
+                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Senin - Jumat, 08:00 - 17:00 WITA</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                  <MapPin className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Lokasi</h3>
+                  <p className="mt-1 text-gray-600 dark:text-gray-300">Lombok, Nusa Tenggara Barat</p>
+                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Terbuka untuk kerja remote maupun onsite</p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Animated Form */}
+          {/* Contact Form */}
           <motion.form
             name="submit-to-google-sheet"
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
             onSubmit={handleSubmit}
+            className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="px-6 py-8">
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="nama"
-                    id="nama"
-                    value={formData.nama}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="pesan" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Message
-                  </label>
-                  <textarea
-                    name="pesan"
-                    id="pesan"
-                    rows={4}
-                    value={formData.pesan}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Send Message
-                </button>
+            <div className="space-y-6">
+              <div>
+                <label htmlFor="nama" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Nama Lengkap
+                </label>
+                <input
+                  type="text"
+                  id="nama"
+                  name="nama"
+                  value={formData.nama}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                  placeholder="Masukkan nama Anda"
+                />
               </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Alamat Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                  placeholder="email@contoh.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Subjek
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                  placeholder="Tentang apa yang ingin dibahas?"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="pesan" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Pesan Detail
+                </label>
+                <textarea
+                  id="pesan"
+                  name="pesan"
+                  rows={4}
+                  value={formData.pesan}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                  placeholder="Deskripsikan kebutuhan Anda..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center"
+              >
+                Kirim Pesan
+                <Mail className="ml-2 h-5 w-5" />
+              </button>
             </div>
           </motion.form>
         </div>

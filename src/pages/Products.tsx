@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { digitalProducts } from '../data';
 import { SearchBar } from '../components/SearchBar';
 import { MessageCircle } from 'lucide-react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const isValidUrl = (url: string): boolean => {
   try {
@@ -13,11 +15,32 @@ const isValidUrl = (url: string): boolean => {
   }
 };
 
+const generateSlug = (name: string) => {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9 -]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+};
+
 export const Products: React.FC = () => {
+  const navigate = useNavigate();
+  const { slug } = useParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<
     (typeof digitalProducts[0] & { demoLink?: string }) | null
   >(null);
+
+const siteUrl = import.meta.env.VITE_APP_SITE_URL || 'https://dayatdev.my.id';
+
+  useEffect(() => {
+    if (slug) {
+      const product = digitalProducts.find(p => generateSlug(p.name) === slug);
+      setSelectedProduct(product || null);
+    } else {
+      setSelectedProduct(null);
+    }
+  }, [slug]);
 
   const filteredProducts = digitalProducts.filter(
     (product) =>
@@ -37,6 +60,83 @@ export const Products: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900">
+      <Helmet>
+        <title>{selectedProduct ? `${selectedProduct.name} | Digital Products` : 'Digital Products | M.Hidayatullah'}</title>
+        <meta 
+          name="description" 
+          content={
+            selectedProduct 
+              ? `${selectedProduct.description.substring(0, 160)}...` 
+              : "Koleksi produk digital premium untuk kebutuhan bisnis dan pengembangan Anda"
+          }
+        />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${siteUrl}/products${slug ? `/${slug}` : ''}`} />
+        <meta 
+          property="og:title" 
+          content={selectedProduct ? selectedProduct.name : 'Digital Products'} 
+        />
+        <meta 
+          property="og:description" 
+          content={selectedProduct 
+            ? `${selectedProduct.description.substring(0, 160)}...`
+            : "Temukan produk digital berkualitas tinggi untuk kebutuhan bisnis dan pribadi Anda"
+          }
+        />
+        <meta 
+          property="og:image" 
+          content={selectedProduct 
+            ? `${siteUrl}${selectedProduct.image}`
+            : `${siteUrl}/og-products.jpg`
+          } 
+        />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta 
+          name="twitter:title" 
+          content={selectedProduct ? selectedProduct.name : 'Digital Products'} 
+        />
+        <meta 
+          name="twitter:description" 
+          content={selectedProduct 
+            ? `${selectedProduct.description.substring(0, 160)}...`
+            : "Koleksi produk digital pilihan terbaik"
+          }
+        />
+        <meta 
+          name="twitter:image" 
+          content={selectedProduct 
+            ? `${siteUrl}${selectedProduct.image}`
+            : `${siteUrl}/og-products.jpg`
+          } 
+        />
+
+        {/* Schema Markup */}
+        {selectedProduct && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": selectedProduct.name,
+              "description": selectedProduct.description,
+              "image": `${siteUrl}${selectedProduct.image}`,
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "IDR",
+                "price": selectedProduct.price,
+                "availability": "https://schema.org/InStock"
+              },
+              "brand": {
+                "@type": "Brand",
+                "name": "M.Hidayatullah"
+              }
+            })}
+          </script>
+        )}
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.h2
           className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center mb-12"
@@ -128,7 +228,7 @@ export const Products: React.FC = () => {
                       </p>
                     </div>
                     <span
-                      onClick={() => setSelectedProduct(product)}
+                      onClick={() => navigate(`/products/${generateSlug(product.name)}`)}
                       className="text-blue-600 hover:underline cursor-pointer"
                     >
                       View Details
@@ -202,7 +302,7 @@ export const Products: React.FC = () => {
             </div>
             <div className="mt-6 flex justify-end">
               <button
-                onClick={() => setSelectedProduct(null)}
+                onClick={() => navigate('/products')}
                 className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
               >
                 Close
