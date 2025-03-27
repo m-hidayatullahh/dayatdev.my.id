@@ -25,3 +25,25 @@ export interface Skill {
   level: number;
   technologies?: string[];
 }
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  readTime: string;
+  tags: string[];
+  image: string;
+  slug?: string; // Optional untuk direct access
+  author?: string; // Optional jika ingin menampilkan author berbeda
+  featured?: boolean; // Optional untuk post featured
+  metadata?: {
+    author: string;
+    keywords: string[];
+    difficulty: string;
+    language: string;
+    updatedAt: string;
+  };
+  relatedPosts?: number[]; // Optional untuk post terkait
+}

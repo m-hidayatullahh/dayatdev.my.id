@@ -14,6 +14,8 @@ import { NotFound } from './pages/NotFound';
 import { NoInternet } from './pages/NoInternet'; // Import halaman NoInternet
 import Assistant from './components/Assistant';
 import { Bot } from 'lucide-react';
+import { Blog } from './pages/Blog'; // Import halaman Blog
+import { DetailBlog } from './pages/DetailBlog'; // Import halaman Blog
 
 // Komponen Error Boundary
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -93,6 +95,8 @@ function App() {
                   <Route path="/projects/:slug" element={<Projects />} />
                   <Route path="/products" element={<Products />} />
                   <Route path="/products/:slug" element={<Products />} />
+                  <Route path="/blog/:slug" element={<DetailBlog />} />
+                  <Route path="/blogs" element={<Blog />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/docs" element={<Docs />} />
                   <Route path="*" element={<NotFound />} />

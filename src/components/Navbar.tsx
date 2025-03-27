@@ -37,6 +37,10 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
             <Link to="/products" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
               Products
             </Link>
+            {/* Added Blog Link */}
+            <Link to="/blogs" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+              Blog
+            </Link>
             <Link to="/contact" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
               Contact
             </Link>
@@ -93,6 +97,14 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
               onClick={() => setIsOpen(false)}
             >
               Products
+            </Link>
+            {/* Added Blog Link for mobile */}
+            <Link
+              to="/blogs"
+              className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              onClick={() => setIsOpen(false)}
+            >
+              Blog
             </Link>
             <Link
               to="/contact"
