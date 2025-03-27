@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Github, Linkedin, Mail, ExternalLink, MessageCircle, Download } from 'lucide-react';
-import { projects, skills, digitalProducts } from '../data';
+import { projects, skills, digitalProducts, blogPosts } from '../data';
+import BlogPreview from '../components/BlogPreview';
 
 const generateSlug = (text: string) => {
   return text
@@ -12,7 +13,6 @@ const generateSlug = (text: string) => {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
 };
-
 
 const siteUrl = import.meta.env.VITE_APP_SITE_URL || 'https://dayatdev.my.id';
 
@@ -29,7 +29,6 @@ export const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900">
-      {/* SEO Metadata */}
       <Helmet>
         <title>M.Hidayatullah - Software Engineer</title>
         <meta 
@@ -42,8 +41,8 @@ export const Home: React.FC = () => {
           content="Experienced software engineer showcasing modern web development projects and technical skills." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dayatdev.my.id" />
-        <meta property="og:image" content="https://dayatdev.my.id/og-image.jpg" />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:image" content={`${siteUrl}/og-image.jpg`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
@@ -143,13 +142,13 @@ export const Home: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-            <img 
+              <img 
                 className="rounded-lg shadow-xl" 
-                src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=800&auto=fo" 
+                src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=800&auto=format" 
                 alt="M.Hidayatullah Profile" 
                 width="800" 
                 height="533" 
-                />
+              />
             </motion.div>
           </div>
         </div>
@@ -347,30 +346,155 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Blog Section */}
       <motion.section
-        className="bg-white dark:bg-gray-800 py-20"
+        className="bg-white dark:bg-gray-800 py-20 pb-24 relative z-10"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-8">
-            Let's Collaborate
-          </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-8">
-            Have an idea? Let's turn it into an exceptional digital product
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.h2
+              className="text-3xl font-extrabold text-gray-900 dark:text-white mb-4"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              Latest Articles
+            </motion.h2>
+            <motion.p
+              className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              Explore technical insights and best practices in modern web development
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+            {blogPosts.slice(0, 3).map((post) => (
+              <BlogPreview 
+                key={post.id}
+                post={post}
+              />
+            ))}
+          </div>
+
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            viewport={{ once: true }}
           >
-            Start Conversation
-            <Mail className="ml-2 h-5 w-5" />
-          </Link>
+            <Link
+              to="/blogs"
+              className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <span>Explore All Articles</span>
+              <ExternalLink className="ml-3 h-5 w-5" />
+            </Link>
+          </motion.div>
         </div>
       </motion.section>
+
+     {/* Contact Section */}
+<motion.section
+  className="bg-gray-50 dark:bg-gray-900 py-20 pt-24 relative z-0 border-t border-gray-200 dark:border-gray-700"
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <motion.div
+      className="mb-12"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ delay: 0.3 }}
+    >
+      <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-6">
+        Let's <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">Collaborate</span>
+      </h2>
+      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Ready to bring your ideas to life? Let's create something extraordinary together
+      </p>
+    </motion.div>
+
+    <motion.div
+      initial={{ scale: 0.95 }}
+      whileInView={{ scale: 1 }}
+      transition={{ type: 'spring', stiffness: 100 }}
+    >
+      <Link
+        to="/contact"
+        className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-2xl text-white bg-green-600 hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl dark:shadow-gray-800/30"
+      >
+        <Mail className="mr-3 h-6 w-6" />
+        Get in Touch
+        <span className="ml-2 animate-pulse">👉</span>
+      </Link>
+    </motion.div>
+
+    <motion.div
+  className="mt-12 text-gray-600 dark:text-gray-300 text-sm"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ delay: 0.5 }}
+>
+  <div className="flex items-center justify-center space-x-2 mb-4">
+    <span className="h-px w-8 bg-gray-400 dark:bg-gray-600"></span>
+    <p className="font-medium text-gray-500 dark:text-gray-400 animate-pulse">
+      Prefer direct contact?
+    </p>
+    <span className="h-px w-8 bg-gray-400 dark:bg-gray-600"></span>
+  </div>
+
+  <div className="flex justify-center space-x-6">
+    <motion.a
+      href="mailto:dayattdev@gmail.com"
+      className="flex items-center space-x-2 p-3 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 group"
+      whileHover={{ scale: 1.05 }}
+    >
+      <div className="relative">
+        <Mail className="h-6 w-6 text-blue-600 group-hover:text-blue-700 dark:text-blue-400 dark:group-hover:text-blue-300 transition-colors" />
+        <span className="absolute -right-1 -top-1 flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-600"></span>
+        </span>
+      </div>
+      <span className="text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        Email Me
+      </span>
+    </motion.a>
+
+    <div className="border-l border-gray-300 dark:border-gray-600 h-8 my-auto"></div>
+
+    <motion.a
+      href="https://wa.me/6287715882995?text=Hi%20Dayat,%20I%20want%20to%20collaborate%20with%20you"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center space-x-2 p-3 rounded-full bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300 group"
+      whileHover={{ scale: 1.05 }}
+    >
+      <div className="relative">
+        <MessageCircle className="h-6 w-6 text-green-600 group-hover:text-green-700 dark:text-green-400 dark:group-hover:text-green-300 transition-colors" />
+        <span className="absolute -right-1 -top-1 flex h-3 w-3">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-600"></span>
+        </span>
+      </div>
+      <span className="text-gray-700 dark:text-gray-200 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+        WhatsApp
+      </span>
+    </motion.a>
+  </div>
+</motion.div>
+  </div>
+</motion.section>
     </div>
   );
 };
