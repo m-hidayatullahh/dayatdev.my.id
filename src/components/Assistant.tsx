@@ -210,7 +210,7 @@ const Assistant: React.FC = () => {
               
               <div className="text-center">
                 <a
-                  href="https://docs.google.com/document/d/1pL_IocL7LzVWW4cTwERJNAksNkO0SqbbdM5k-Ff8n5M/edit?usp=sharing"
+                  href="https://docs.google.com/document/d/14a_Ju-babKOoVg7wE4Bwdpt5m3Z1RbDn_FPHlHMZnh0/edit?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-md text-sm shadow-sm hover:shadow-md transition-all"

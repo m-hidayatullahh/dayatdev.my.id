@@ -14,7 +14,7 @@ const generateSlug = (text: string) => {
     .replace(/-+/g, '-');
 };
 
-const siteUrl = import.meta.env.VITE_APP_SITE_URL || 'https://dayatdev.my.id';
+const siteUrl = import.meta.env.VITE_APP_SITE_URL || 'https://dayatdev.my.id/';
 
 export const Home: React.FC = () => {
   const handleWhatsAppCheckout = (product: typeof digitalProducts[0]) => {
@@ -91,7 +91,7 @@ export const Home: React.FC = () => {
             transition={{ delay: 0.5, duration: 1 }}
           >
             <a
-              href="https://docs.google.com/document/d/1pL_IocL7LzVWW4cTwERJNAksNkO0SqbbdM5k-Ff8n5M/edit?usp=sharing"
+              href="https://docs.google.com/document/d/14a_Ju-babKOoVg7wE4Bwdpt5m3Z1RbDn_FPHlHMZnh0/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               download

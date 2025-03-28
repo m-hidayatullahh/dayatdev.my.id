@@ -20,7 +20,7 @@ export const About: React.FC = () => {
           content="Learn more about M.Hidayatullah's technical expertise and professional journey in software development" 
         />
         <meta property="og:type" content="profile" />
-        <meta property="og:url" content="https://dayatdev.my.id/about" />
+        <meta property="og:url" content="https://dayatdev.my.id/about/" />
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -72,7 +72,7 @@ export const About: React.FC = () => {
               philosophy centers around clean architecture, test-driven development, and CI/CD best practices.
             </motion.p>
             <motion.a
-              href="https://docs.google.com/document/d/1pL_IocL7LzVWW4cTwERJNAksNkO0SqbbdM5k-Ff8n5M/edit?usp=sharing"
+              href="https://docs.google.com/document/d/14a_Ju-babKOoVg7wE4Bwdpt5m3Z1RbDn_FPHlHMZnh0/edit?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               download
