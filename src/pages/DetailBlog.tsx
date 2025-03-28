@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { 
-  ArrowLeft, Clock, BookOpen, Copy,
+  ArrowLeft, Clock, BookOpen, Copy, User,
   Facebook, Twitter, Linkedin, Link as LinkIcon 
 } from 'lucide-react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -296,6 +296,12 @@ export const DetailBlog: React.FC = () => {
           transition={{ duration: 0.4 }}
         >
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
+            {post.metadata?.author && (
+              <span className="mr-2">
+            By {' '} {post.metadata.author}
+              </span>
+            )}
+            <span className="mr-2">•</span>
             <Clock className="mr-2 h-4 w-4" />
             <span>
               {new Date(post.date).toLocaleDateString('en-US', {
