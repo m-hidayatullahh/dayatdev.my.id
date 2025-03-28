@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -89,7 +89,8 @@ function App() {
               <div className="flex-grow">
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
+                  <Route path="/about" element={<Navigate to="/m-hidayatullah" replace />} />
+                  <Route path="/m-hidayatullah" element={<About />} />
                   <Route path="/skills" element={<Skills />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/projects/:slug" element={<Projects />} />
