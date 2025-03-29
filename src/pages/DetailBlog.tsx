@@ -8,11 +8,6 @@ import {
 } from 'lucide-react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
-import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
-import php from 'react-syntax-highlighter/dist/esm/languages/prism/php';
-import python from 'react-syntax-highlighter/dist/esm/languages/prism/python';
-import sql from 'react-syntax-highlighter/dist/esm/languages/prism/sql';
 import { blogPosts, BlogPost } from '../data';
 
 // Custom WhatsApp Icon
@@ -25,12 +20,6 @@ const WhatsAppIcon = () => (
     <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39-.406 0-.782-.682-2.068-.682-1.288 0-1.686.682-2.068.682-.434 0-1.148-1.39-1.518-1.39-.372 0-.785.62-.785 1.634 0 .684.312 1.465.682 2.134.372.664.84 1.248 1.352 1.73.682.682 1.518 1.248 2.48 1.248.963 0 1.8-.566 2.48-1.248.514-.482.98-1.066 1.352-1.73.37-.67.682-1.45.682-2.134 0-1.014-.413-1.634-.785-1.634zm-3.65-12.7c-5.258 0-9.523 4.265-9.523 9.523 0 1.73.47 3.42 1.353 4.89L6.3 25.075l4.32-1.416a9.47 9.47 0 0 0 4.522 1.16c5.258 0 9.523-4.265 9.523-9.523S20.718 4.505 15.46 4.505zm0 16.32a6.79 6.79 0 0 1-3.42-.916l-.245-.146-2.55.836.683-2.49-.16-.254a6.797 6.797 0 0 1-1.067-3.64c0-3.75 3.05-6.8 6.8-6.8 3.75 0 6.8 3.05 6.8 6.8s-3.05 6.8-6.8 6.8z"/>
   </svg>
 );
-
-SyntaxHighlighter.registerLanguage('javascript', javascript);
-SyntaxHighlighter.registerLanguage('typescript', typescript);
-SyntaxHighlighter.registerLanguage('php', php);
-SyntaxHighlighter.registerLanguage('python', python);
-SyntaxHighlighter.registerLanguage('sql', sql);
 
 const getImageUrl = (url: string): string => {
   try {
@@ -226,7 +215,7 @@ export const DetailBlog: React.FC = () => {
   return (
     <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>{`M.Hidayatullah's Blog - ${post.title}`}</title>
+        <title>{`M.Hidayatullah Blog - ${post.title}`}</title>
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
