@@ -6,6 +6,9 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-typescript';
 import { blogPosts, BlogPost } from '../data';
+import  Comments  from '../components/Comments';
+
+
 
 export const DetailBlog: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -35,25 +38,6 @@ export const DetailBlog: React.FC = () => {
       setTimeout(() => setCopiedLink(false), 2000);
     });
   };
-
-  React.useEffect(() => {
-    const commentsSection = document.getElementById('comments');
-    if (commentsSection) {
-      commentsSection.innerHTML = ''; // Bersihkan skrip sebelumnya
-  
-      const script = document.createElement('script');
-      script.src = 'https://utteranc.es/client.js';
-      script.setAttribute('repo', 'm-hidayatullahh/comment'); // Ganti dengan repo GitHub Anda
-      script.setAttribute('issue-term', 'url'); // Pastikan menggunakan 'url'
-      script.setAttribute('theme', 'github-dark'); // Tema komentar
-      script.setAttribute('crossorigin', 'anonymous');
-      script.setAttribute('async', 'true');
-      script.setAttribute('data-redirect-uri', window.location.href); // Redirect ke halaman yang benar
-  
-      commentsSection.appendChild(script);
-    }
-  }, []);
-  // Tambahkan slug ke dependensi agar hanya dieksekusi saat artikel berubah
 
   if (!post) {
     return (
@@ -142,11 +126,7 @@ export const DetailBlog: React.FC = () => {
             </div>
           </article>
 
-          {/* Comments Section */}
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">Comments</h3>
-          <div id="comments" className="mt-12">
-            <p className="text-gray-500 dark:text-gray-400 text-center">Memuat komentar...</p>
-          </div>
+          <Comments repo="m-hidayatullahh/blog-comments" theme="auto" />
         </div>
 
         {/* Artikel Terkait */}
