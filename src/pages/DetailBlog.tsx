@@ -36,21 +36,24 @@ export const DetailBlog: React.FC = () => {
     });
   };
 
-  // Tambahkan komentar Utterances
   React.useEffect(() => {
     const commentsSection = document.getElementById('comments');
     if (commentsSection) {
       commentsSection.innerHTML = ''; // Bersihkan skrip sebelumnya
+  
       const script = document.createElement('script');
       script.src = 'https://utteranc.es/client.js';
-      script.setAttribute('repo', 'm-hidayatullahh/comment');
-      script.setAttribute('issue-term', 'pathname');
-      script.setAttribute('theme', 'github-dark');
-      script.crossOrigin = 'anonymous';
-      script.async = true;
+      script.setAttribute('repo', 'm-hidayatullahh/comment'); // Ganti dengan repo GitHub Anda
+      script.setAttribute('issue-term', 'url'); // Pastikan menggunakan 'url'
+      script.setAttribute('theme', 'github-dark'); // Tema komentar
+      script.setAttribute('crossorigin', 'anonymous');
+      script.setAttribute('async', 'true');
+      script.setAttribute('data-redirect-uri', window.location.href); // Redirect ke halaman yang benar
+  
       commentsSection.appendChild(script);
     }
-  }, [slug]); // Tambahkan slug ke dependensi agar hanya dieksekusi saat artikel berubah
+  }, []);
+  // Tambahkan slug ke dependensi agar hanya dieksekusi saat artikel berubah
 
   if (!post) {
     return (
