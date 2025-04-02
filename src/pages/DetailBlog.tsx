@@ -3,8 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css'; // Import tema Prism.js
-import 'prismjs/components/prism-typescript'; // Dukungan untuk TypeScript
+import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/components/prism-typescript';
 import { blogPosts, BlogPost } from '../data';
 
 export const DetailBlog: React.FC = () => {
@@ -26,7 +26,6 @@ export const DetailBlog: React.FC = () => {
   }, [slug]);
 
   React.useEffect(() => {
-    // Highlight all code blocks after content is rendered
     Prism.highlightAll();
   }, [post?.content]);
 
@@ -37,21 +36,21 @@ export const DetailBlog: React.FC = () => {
     });
   };
 
-  // Add Utterances script for comments
+  // Tambahkan komentar Utterances
   React.useEffect(() => {
     const commentsSection = document.getElementById('comments');
     if (commentsSection) {
-      commentsSection.innerHTML = ''; // Hapus skrip sebelumnya jika ada
+      commentsSection.innerHTML = ''; // Bersihkan skrip sebelumnya
       const script = document.createElement('script');
       script.src = 'https://utteranc.es/client.js';
-      script.setAttribute('repo', 'm-hidayatullahh/comment'); // Ganti dengan repo GitHub Anda
-      script.setAttribute('issue-term', 'pathname'); // Gunakan pathname untuk menghubungkan komentar ke halaman
-      script.setAttribute('theme', 'github-dark'); // Tema komentar
+      script.setAttribute('repo', 'm-hidayatullahh/comment');
+      script.setAttribute('issue-term', 'pathname');
+      script.setAttribute('theme', 'github-dark');
       script.crossOrigin = 'anonymous';
       script.async = true;
       commentsSection.appendChild(script);
     }
-  }, []);
+  }, [slug]); // Tambahkan slug ke dependensi agar hanya dieksekusi saat artikel berubah
 
   if (!post) {
     return (
@@ -141,7 +140,10 @@ export const DetailBlog: React.FC = () => {
           </article>
 
           {/* Comments Section */}
-          <div id="comments" className="mt-12"></div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">Comments</h3>
+          <div id="comments" className="mt-12">
+            <p className="text-gray-500 dark:text-gray-400 text-center">Memuat komentar...</p>
+          </div>
         </div>
 
         {/* Artikel Terkait */}
