@@ -37,6 +37,22 @@ export const DetailBlog: React.FC = () => {
     });
   };
 
+  // Add Utterances script for comments
+  React.useEffect(() => {
+    const commentsSection = document.getElementById('comments');
+    if (commentsSection) {
+      commentsSection.innerHTML = ''; // Hapus skrip sebelumnya jika ada
+      const script = document.createElement('script');
+      script.src = 'https://utteranc.es/client.js';
+      script.setAttribute('repo', 'm-hidayatullahh/comment'); // Ganti dengan repo GitHub Anda
+      script.setAttribute('issue-term', 'pathname'); // Gunakan pathname untuk menghubungkan komentar ke halaman
+      script.setAttribute('theme', 'github-dark'); // Tema komentar
+      script.crossOrigin = 'anonymous';
+      script.async = true;
+      commentsSection.appendChild(script);
+    }
+  }, []);
+
   if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -123,6 +139,9 @@ export const DetailBlog: React.FC = () => {
               </div>
             </div>
           </article>
+
+          {/* Comments Section */}
+          <div id="comments" className="mt-12"></div>
         </div>
 
         {/* Artikel Terkait */}
