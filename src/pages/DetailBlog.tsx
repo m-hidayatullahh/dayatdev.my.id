@@ -50,7 +50,7 @@ export const DetailBlog: React.FC = () => {
       script.async = true;
       commentsSection.appendChild(script);
     }
-  }, [slug]); // Tambahkan slug ke dependensi agar hanya dieksekusi saat artikel berubah
+  }, [post.slug]); // Tambahkan slug ke dependensi agar hanya dieksekusi saat artikel berubah
 
   if (!post) {
     return (
