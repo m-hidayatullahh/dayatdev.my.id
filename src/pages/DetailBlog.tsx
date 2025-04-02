@@ -6,9 +6,6 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-typescript';
 import { blogPosts, BlogPost } from '../data';
-import  Comments  from '../components/Comments';
-
-
 
 export const DetailBlog: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -125,8 +122,6 @@ export const DetailBlog: React.FC = () => {
               </div>
             </div>
           </article>
-
-          <Comments repo="m-hidayatullahh/blog-comments" theme="auto" />
         </div>
 
         {/* Artikel Terkait */}
