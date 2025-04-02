@@ -13,11 +13,11 @@ const Assistant: React.FC = () => {
     nama: "M. Hidayatullah, S.Kom",
     profesi: "Web Developer",
     kontak: {
-        lokasi: import.meta.env.VITE_CONTACT_LOCATION || "Lokasi tidak tersedia",
-        telepon: import.meta.env.VITE_CONTACT_PHONE || "Telepon tidak tersedia",
-        email: import.meta.env.VITE_CONTACT_EMAIL || "Email tidak tersedia",
-        website: import.meta.env.VITE_CONTACT_WEBSITE || "Website tidak tersedia"
-      },
+      lokasi: import.meta.env.VITE_CONTACT_LOCATION || "Lokasi tidak tersedia",
+      telepon: import.meta.env.VITE_CONTACT_PHONE || "Telepon tidak tersedia",
+      email: import.meta.env.VITE_CONTACT_EMAIL || "Email tidak tersedia",
+      website: import.meta.env.VITE_CONTACT_WEBSITE || "Website tidak tersedia"
+    },
     ringkasan: "Seorang Web Developer yang berkomitmen untuk menghasilkan solusi digital yang inovatif dan fungsional. Dengan pengalaman lebih dari 2 tahun dalam mengembangkan aplikasi web, memiliki keahlian dalam Framework Laravel, Codeigniter, VueJs dan fokus pada tampilan menarik serta kinerja optimal.",
     keahlian: [
       "HTML",
@@ -112,6 +112,11 @@ const Assistant: React.FC = () => {
         ]
       }
     ],
+    pengalamankarir: [
+      {
+        deskripsi: "Lebih dari 2 Tahun sebagai Software Engineer",
+      }
+    ],
     sosial_media: {
       github: "https://github.com/m-hidayatullahh",
       linkedin: "https://www.linkedin.com/in/dayatdev",
@@ -123,6 +128,11 @@ const Assistant: React.FC = () => {
 
   // Function to handle user questions
   const handleAsk = () => {
+    if (!question.trim()) {
+      setAnswer('Pertanyaan tidak boleh kosong.');
+      return;
+    }
+
     setLoading(true);
     setAnswer(''); // Clear previous answer
 
@@ -147,11 +157,16 @@ const Assistant: React.FC = () => {
         .map((edu) => `${edu.institusi} (${edu.tahun}${edu.jurusan ? `, ${edu.jurusan}` : ''})`)
         .join('\n');
       setAnswer(`Riwayat pendidikan saya:\n${pendidikan}`);
-    } else if (normalizedQuestion.includes('pengalaman') || normalizedQuestion.includes('kerja')) {
+    } else if (normalizedQuestion.includes('pengalaman kerja')) {
       const pengalaman = cvData.pengalaman_kerja
         .map((job) => `${job.perusahaan} sebagai ${job.posisi} (${job.tahun})`)
         .join('\n');
       setAnswer(`Pengalaman kerja saya:\n${pengalaman}`);
+    } else if (normalizedQuestion.includes('pengalaman karir')) {
+      const pengalamankarir = cvData.pengalamankarir
+        .map((exp) => `${exp.deskripsi}`)
+        .join('\n\n');
+      setAnswer(`Pengalaman karir saya:\n${pengalamankarir}`);
     } else if (normalizedQuestion.includes('proyek')) {
       const proyek = cvData.pengalaman_proyek
         .map((proj) => `${proj.nama} (${proj.tahun}): ${proj.deskripsi}\nRepository: ${proj.repository}`)
@@ -172,18 +187,24 @@ const Assistant: React.FC = () => {
     setLoading(false);
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleAsk();
+    }
+  };
+
   return (
     <div>
       {showDocs ? (
-        // Show Docs in a responsive modal
         <Docs onClose={() => setShowDocs(false)} />
       ) : (
-        // Show Assistant if showDocs is false
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Virtual Assistant</h1>
           <textarea
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={handleKeyPress}
             placeholder="Tanyakan sesuatu tentang M. Hidayatullah..."
             className="w-full p-3 border rounded-md mb-4"
           />
@@ -196,34 +217,30 @@ const Assistant: React.FC = () => {
           </button>
           {answer && (
             <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-md space-y-4">
-            <p className="text-gray-900 dark:text-gray-300 text-center">
-              {answer}
-            </p>
-            
-            <div className="flex flex-col items-center space-y-3">
-              <button
-                onClick={() => setShowDocs(true)}
-                className="text-blue-600 dark:text-blue-400 hover:underline text-sm transition-colors"
-              >
-                Lihat Panduan Bertanya
-              </button>
-              
-              <div className="text-center">
-                <a
-                  href="https://docs.google.com/document/d/14a_Ju-babKOoVg7wE4Bwdpt5m3Z1RbDn_FPHlHMZnh0/edit?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-md text-sm shadow-sm hover:shadow-md transition-all"
+              <p className="text-gray-900 dark:text-gray-300 text-center">{answer}</p>
+              <div className="flex flex-col items-center space-y-3">
+                <button
+                  onClick={() => setShowDocs(true)}
+                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm transition-colors"
                 >
-                  <Download className="h-3.5 w-3.5 mr-1.5" />
-                  Download Resume
-                </a>
-                <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-300">
-                  Klik untuk mengunduh CV lengkap
-                </p>
+                  Lihat Panduan Bertanya
+                </button>
+                <div className="text-center">
+                  <a
+                    href="https://docs.google.com/document/d/14a_Ju-babKOoVg7wE4Bwdpt5m3Z1RbDn_FPHlHMZnh0/edit?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-md text-sm shadow-sm hover:shadow-md transition-all"
+                  >
+                    <Download className="h-3.5 w-3.5 mr-1.5" />
+                    Download Resume
+                  </a>
+                  <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-300">
+                    Klik untuk mengunduh CV lengkap
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
           )}
         </div>
       )}

@@ -34,6 +34,7 @@ const Docs: React.FC<DocsProps> = ({ onClose }) => {
           <li>"Apa saja keahlian Anda?"</li>
           <li>"Ceritakan tentang pengalaman kerja Anda."</li>
           <li>"Apa saja proyek yang pernah Anda kerjakan?"</li>
+          <li>"Pengalaman Karir?"</li>
         </ul>
         <p className="mb-4 text-center md:text-left">
           Jika Anda bertanya di luar topik yang tersedia, asisten akan memberikan jawaban default.

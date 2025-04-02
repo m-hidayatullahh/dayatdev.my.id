@@ -207,7 +207,7 @@ export const blogPosts: BlogPost[] = [
     "title": "Mastering TypeScript untuk Aplikasi Enterprise",
     "excerpt": "Panduan komprehensif implementasi type safety dalam pengembangan aplikasi skala enterprise dengan TypeScript.",
     "content": `
-      <strong>Pendahuluan<strong/>
+      <strong>Pendahuluan</strong>
       <p>TypeScript telah menjadi standar industri dalam pengembangan aplikasi enterprise. Dengan fitur seperti <strong>static typing, type inference, dan interface</strong>, TypeScript membantu tim pengembang mengelola kode yang kompleks serta meminimalisir bug yang sulit dideteksi dalam JavaScript.</p>
       <p>Artikel ini akan membahas bagaimana TypeScript dapat diterapkan dalam skala enterprise, mulai dari <strong>konsep dasar, arsitektur aplikasi, hingga best practices</strong>.</p>
       <br/>
@@ -221,6 +221,22 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Compiler Warnings</strong> – Memberikan peringatan jika terjadi inkonsistensi dalam penggunaan tipe.</li>
       </ul>
       <br/>
+      <strong>Contoh Kode TypeScript:</strong>
+      <pre><code class="language-typescript">
+      interface User {
+        id: number;
+        name: string;
+        email?: string; // Optional property
+      }
+  
+      const user: User = {
+        id: 1,
+        name: "John Doe",
+      };
+  
+      console.log(user);
+      </code></pre>
+      <br/>
       <strong>2. Arsitektur Aplikasi Enterprise dengan TypeScript</strong>
       <p>Pada skala enterprise, struktur kode yang modular sangat penting untuk menjaga skalabilitas dan maintainability aplikasi. Beberapa prinsip yang harus diterapkan:</p>
       <ul>
@@ -231,6 +247,16 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Type-First Development</strong> – Menentukan skema data sebelum implementasi.</li>
       </ul>
       <br/>
+      <strong>Contoh Modularization:</strong>
+      <pre><code class="language-typescript">
+      // userService.ts
+      import { User } from "./userModel";
+  
+      export const getUser = (id: number): User => {
+        return { id, name: "John Doe" };
+      };
+      </code></pre>
+      <br/>
       <strong>3. Best Practices dalam TypeScript</strong>
       <p>Berikut beberapa best practices yang perlu diterapkan untuk menjaga kualitas kode TypeScript dalam tim besar:</p>
       <ul>
@@ -240,6 +266,16 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Implementasikan Utility Types</strong> – Mengoptimalkan penggunaan tipe dalam kode.</li>
       </ul>
       <br/>
+      <strong>Contoh Generics:</strong>
+      <pre><code class="language-typescript">
+      function identity<T>(value: T): T {
+        return value;
+      }
+  
+      const num = identity<number>(42);
+      const str = identity<string>("Hello, TypeScript!");
+      </code></pre>
+      <br/>
       <strong>4. Studi Kasus Implementasi TypeScript</strong>
       <p>Berikut beberapa contoh implementasi nyata TypeScript dalam proyek enterprise:</p>
       <ul>
@@ -248,7 +284,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>Penggunaan Generics</strong> – Membantu dalam pengembangan komponen UI yang dapat digunakan kembali.</li>
         <li><strong>Penerapan TypeScript pada Backend</strong> – Implementasi dengan Node.js dan GraphQL meningkatkan keamanan dan keandalan API.</li>
       </ul>
-        <br/>
+      <br/>
       <strong>Kesimpulan</strong>
       <p>TypeScript telah menjadi standar dalam pengembangan aplikasi enterprise karena manfaatnya dalam meningkatkan keamanan kode, keterbacaan, dan skalabilitas. Dengan mengikuti best practices dan arsitektur yang tepat, tim pengembang dapat memastikan proyek mereka lebih tahan lama dan mudah dikembangkan di masa depan.</p>
     `,
