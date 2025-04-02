@@ -1,31 +1,13 @@
-# My Portfolio 2025
+# My Portfolio Website
 
-Welcome to my portfolio! This repository showcases my projects, skills, and achievements.
+Welcome to my portfolio! This repository highlights my professional journey, including my projects, skills, and accomplishments.
 
-## Table of Contents
-- [About Me](#about-me)
-- [Projects](#projects)
-- [Skills](#skills)
-- [Contact](#contact)
+## Explore My Work
+- [About Me](https://dayatdev.my.id/m-hidayatullah) - Learn more about my background and experiences.
+- [Projects](https://dayatdev.my.id/projects) - Discover the projects I've worked on.
+- [Skills](https://dayatdev.my.id/skills) - Check out my technical and professional skills.
+- [Products](https://dayatdev.my.id/products) - Explore the products I've developed.
+- [Blog](https://dayatdev.my.id/blogs) - Read my thoughts and insights on various topics.
+- [Contact](https://dayatdev.my.id/contact) - Get in touch with me.
 
-## About Me
-I am a passionate developer with a focus on creating impactful and innovative solutions. My goal is to continuously learn and grow in the field of technology.
-
-## Projects
-Here are some of the projects I have worked on:
-1. **Project Name** - Brief description of the project.
-2. **Project Name** - Brief description of the project.
-3. **Project Name** - Brief description of the project.
-
-## Skills
-- Programming Languages: [e.g., Python, JavaScript, etc.]
-- Frameworks: [e.g., React, Django, etc.]
-- Tools: [e.g., Git, Docker, etc.]
-
-## Contact
-Feel free to reach out to me:
-- Email: [your-email@example.com](mailto:your-email@example.com)
-- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/your-profile)
-- Portfolio: [Your Portfolio Website](https://your-portfolio.com)
-
-Thank you for visiting my portfolio!
+Thank you for visiting my portfolio. I hope you find it insightful and engaging!
