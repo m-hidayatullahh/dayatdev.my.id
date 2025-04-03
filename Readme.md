@@ -1,13 +1,9 @@
-# My Portfolio Website
+# dayatdev.my.id
 
-Welcome to my portfolio! This repository highlights my professional journey, including my projects, skills, and accomplishments.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Netlify Status](https://api.netlify.com/api/v1/badges/0a51d0e9-f611-4dd8-887f-fc1889e68540/deploy-status)](https://app.netlify.com/sites/mhidayatullah-portofolio/deploys)
 
-## Explore My Work
-- [About Me](https://dayatdev.my.id/m-hidayatullah) - Learn more about my background and experiences.
-- [Projects](https://dayatdev.my.id/projects) - Discover the projects I've worked on.
-- [Skills](https://dayatdev.my.id/skills) - Check out my technical and professional skills.
-- [Products](https://dayatdev.my.id/products) - Explore the products I've developed.
-- [Blog](https://dayatdev.my.id/blogs) - Read my thoughts and insights on various topics.
-- [Contact](https://dayatdev.my.id/contact) - Get in touch with me.
+My personal website running on React.
 
-Thank you for visiting my portfolio. I hope you find it insightful and engaging!
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
