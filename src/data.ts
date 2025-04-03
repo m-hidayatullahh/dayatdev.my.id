@@ -1,26 +1,5 @@
 import { Project, DigitalProduct, Skill, BlogPost } from './types';
 
-// export const projects: Project[] = [
-//   {
-//     id: 1,
-//     title: "E-commerce Platform",
-//     description: "A full-stack e-commerce platform built with React and Node.js",
-//     image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&auto=format&fit=crop&q=60",
-//     tags: ["React", "Node.js", "MongoDB", "Express"],
-//     link: "https://github.com",
-//     githubLink: "https://github.com/m-hidayatullahh/look-indonesia-project"
-//   },
-//   {
-//     id: 2,
-//     title: "Portfolio Website",
-//     description: "A modern portfolio website with dark mode and animations",
-//     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
-//     tags: ["React", "Tailwind CSS", "TypeScript"],
-//     link: "https://github.com",
-//     githubLink: "https://github.com/m-hidayatullahh/look-indonesia-project"
-//   }
-// ];
-
 export const projects: Project[] = [
   {
     id: 1,

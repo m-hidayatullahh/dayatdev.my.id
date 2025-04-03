@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Code } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 interface NavbarProps {
@@ -15,9 +15,10 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
     <nav className="fixed w-full bg-white dark:bg-gray-900 shadow-lg z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex items-center">
+        <div className="flex items-center">
+            <Code className="h-6 w-6 text-gray-900 dark:text-white mr-2" />
             <Link to="/" className="text-2xl font-bold text-gray-900 dark:text-white">
-              Portfolio
+              dayatdev
             </Link>
           </div>
 
